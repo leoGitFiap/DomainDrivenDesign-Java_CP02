@@ -1,121 +1,110 @@
-// Define que esta classe também pertence ao pacote 'inventario'.
+// Tarefa 3: Define que esta classe também pertence ao pacote 'inventario'.
 package inventario;
-// Importa a classe 'Scanner' do pacote 'java.util', que é usada para ler a entrada do usuário.
+// Tarefa 12a: Importa a classe 'Scanner' para ler a entrada do usuário.
 import java.util.Scanner;
 
-// Declaração da classe pública chamada 'ProductTester'.
+// Tarefa 9: Cria a classe driver chamada 'ProductTester'.
 public class ProductTester {
     // O método 'main', ponto de entrada para a execução do programa.
     public static void main(String[] args) {
 
-        // Cria uma nova instância da classe Scanner, associando-a à entrada padrão do sistema (o teclado).
+        // Tarefa 12a: Adiciona um Scanner no início do método main.
         Scanner sc = new Scanner(System.in);
 
-        // Declara e inicializa uma variável inteira 'maxSize' como -1. Ela armazenará o número de produtos a serem criados.
+        // Tarefa 19a: Cria uma variável 'maxSize' para armazenar o número de produtos.
         int maxSize = -1;
 
-        // Inicia um loop 'do-while'. O código dentro do 'do' será executado pelo menos uma vez.
+        // Tarefa 19c: Utiliza um loop 'do-while' para garantir que um valor positivo ou zero seja inserido.
         do {
-            // Imprime uma instrução para o usuário no console.
+            // Tarefa 19b: Solicita ao usuário para inserir o número de produtos.
             System.out.println("Insira o número de produtos que gostaria de adicionar:");
-            // Imprime outra instrução.
             System.out.println("Insira '0' (zero) se não quiser adicionar produtos.");
-            // Imprime uma solicitação para o usuário digitar sua opção, sem pular linha.
             System.out.print("Sua opção: ");
-            // Lê o próximo número inteiro digitado pelo usuário e o armazena em 'maxSize'.
             maxSize = sc.nextInt();
-            // Verifica se o valor inserido é negativo.
+
+            // Tarefa 19c: Exibe uma mensagem de erro se o valor for inválido.
             if (maxSize < 0) {
-                // Se for negativo, informa ao usuário que o valor está incorreto.
                 System.out.println("\nValor incorreto inserido. Por favor, tente novamente.\n");
             }
-            // O loop continua enquanto o valor de 'maxSize' for menor que 0.
         } while (maxSize < 0);
 
-        // Verifica se o usuário escolheu não adicionar produtos (digitou 0).
+        // Tarefa 20a: Cria uma instrução 'if' que exibe uma mensagem se maxSize for zero.
         if (maxSize == 0) {
-            // Se sim, exibe uma mensagem informando que nenhum produto será adicionado.
             System.out.println("Não há produtos para adicionar!");
-            // Se 'maxSize' for maior que 0...
+            // Tarefa 20b: Adiciona uma instrução 'else' para lidar com valores maiores que zero.
         } else {
-            // Informa ao usuário quantos produtos serão adicionados.
             System.out.println(maxSize + " produto(s) serão adicionados.");
 
-            // Cria um array (vetor) de objetos 'Produto' com o tamanho definido pelo usuário em 'maxSize'.
+            // Tarefa 20b: Cria um array unidimensional de Produtos com o tamanho especificado.
             Produto[] produtos = new Produto[maxSize];
 
-            // Declara variáveis temporárias para armazenar os dados de cada produto antes de criar o objeto.
+            // Tarefa 12b: Cria variáveis locais temporárias para armazenar os valores do usuário.
             int tempNumber, tempQty;
             String tempName;
             double tempPrice;
 
-            // Inicia um loop 'for' que executará 'maxSize' vezes (de 0 até o tamanho do array - 1).
+            // Tarefa 21: Preenche o array com dados do usuário.
+            // Tarefa 21a: Escreve um loop 'for' para iterar pelo array.
             for (int i = 0; i < produtos.length; i++) {
-                // Consome a quebra de linha pendente do 'nextInt()' ou 'nextDouble()' anterior. Essencial para ler a próxima linha corretamente.
+                // Tarefa 21b: Esvazia o buffer de entrada antes de ler a próxima linha de texto.
                 sc.nextLine();
 
-                // Exibe um cabeçalho para indicar qual produto está sendo inserido.
                 System.out.println("\n=== Inserindo os dados do Produto " + (i + 1) + " ===");
 
-                // Solicita o nome do produto.
+                // Tarefa 21c: Reutiliza o código para obter a entrada do usuário para cada campo.
                 System.out.println(">>> Digite o nome do produto: ");
-                // Lê a linha inteira digitada pelo usuário e armazena em 'tempName'.
                 tempName = sc.nextLine();
 
-                // Solicita o número do item.
                 System.out.print(">>> Digite o número do item: ");
-                // Lê o próximo inteiro digitado e armazena em 'tempNumber'.
                 tempNumber = sc.nextInt();
 
-                // Solicita a quantidade.
                 System.out.print(">>> Digite a quantidade: ");
-                // Lê o próximo inteiro digitado e armazena em 'tempQty'.
                 tempQty = sc.nextInt();
 
-                // Solicita o preço.
                 System.out.print(">>> Digite o preço: ");
-                // Lê o próximo número de ponto flutuante (double) e armazena em 'tempPrice'.
                 tempPrice = sc.nextDouble();
 
-                // Cria uma nova instância (objeto) da classe 'Produto' usando o construtor com parâmetros e a armazena na posição 'i' do array.
+                // Tarefa 21d: Adiciona um novo objeto Produto ao array usando o construtor com 4 parâmetros.
                 produtos[i] = new Produto(tempNumber, tempName, tempQty, tempPrice);
+
+                // Exemplo de como a Tarefa 16 seria aplicada a um item do array
+                // if(i == 0){ // Se for o primeiro produto (índice 0)
+                //     produtos[i].setAtivo(false); // Define o status como 'false' (Descontinuado)
+                // }
             }
 
-            // Exibe um cabeçalho para a listagem dos produtos.
             System.out.println("\n====================================================");
             System.out.println("=== EXIBINDO TODOS OS NOVOS PRODUTOS CADASTRADOS ===");
             System.out.println("====================================================");
 
-            // Inicia um 'for-each' loop para percorrer cada objeto 'Produto' dentro do array 'produtos'.
+            // Tarefa 22: Usa um loop 'for-each' para exibir as informações de cada produto no array.
             for (Produto produtoAtual : produtos) {
-                // Para cada produto no array, invoca implicitamente seu método 'toString()' e imprime o resultado no console.
                 System.out.println(produtoAtual);
             }
         }
+
+        // As tarefas 12 e 13 foram incorporadas na lógica do loop acima.
+        // A demonstração abaixo cumpre as tarefas 10 e 11.
         System.out.println("\n====================================================");
         System.out.println("======= EXIBINDO OS PRODUTOS PRÉ-CADASTRADOS =======");
         System.out.println("====================================================");
 
-        // --- Demonstração de criação de objetos 'Produto' de forma direta ---
-        // Cria um novo objeto 'Produto' e o armazena na variável 'p3'.
+        // Tarefa 10b: Cria quatro objetos Produto fornecendo valores diretamente ao construtor.
         Produto p3 = new Produto(7652, "CD Greatest Hits", 25, 29.99);
-        // Cria um novo objeto 'Produto' e o armazena na variável 'p4'.
         Produto p4 = new Produto(9865, "DVD Filme X", 10, 39.90);
-        // Cria um novo objeto 'Produto' e o armazena na variável 'p5'.
         Produto p5 = new Produto(2168, "Software Antivirus", 50, 99.90);
-        // Cria um novo objeto 'Produto' e o armazena na variável 'p6'.
         Produto p6 = new Produto(1987, "Mouse Gamer", 15, 149.90);
 
-        // Imprime os detalhes do objeto 'p3' usando seu método 'toString()'.
+        // Tarefa 16: Demonstração de como chamar o setter para definir 'ativo' como falso.
+        p3.setAtivo(false);
+
+        // Tarefa 11: Exibe os detalhes de cada produto no console.
         System.out.println("\n" + p3);
-        // Imprime os detalhes do objeto 'p4'.
         System.out.println(p4);
-        // Imprime os detalhes do objeto 'p5'.
         System.out.println(p5);
-        // Imprime os detalhes do objeto 'p6'.
         System.out.println(p6);
 
-        // Fecha o objeto Scanner para liberar os recursos do sistema. É uma boa prática fazer isso ao final.
+        // Tarefa 13e: Fecha o objeto Scanner para liberar os recursos.
         sc.close();
     }
 }

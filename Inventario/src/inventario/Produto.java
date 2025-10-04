@@ -1,116 +1,105 @@
-// Define que a classe pertence ao pacote 'inventario'. Pacotes são usados para organizar as classes.
+// 3: Define que esta classe pertence ao pacote 'inventario', organizando o projeto.
 package inventario;
 
-// Declaração da classe pública chamada 'Produto'.
+// 4: Criação da classe de objeto chamada 'Produto'.
 public class Produto {
-    // Declara um atributo privado do tipo inteiro para armazenar o número de identificação do item.
+    // 5: Adiciona os campos (variáveis) de instância privada.
+    // 5a: Campo para o número do item.
     private int numeroItem;
-    // Declara um atributo privado do tipo String para armazenar o nome do produto.
+    // 5b: Campo para o nome do produto.
     private String nomeProduto;
-    // Declara um atributo privado do tipo inteiro para armazenar a quantidade do produto em estoque.
+    // 5c: Campo para o número de unidades em estoque.
     private int quantidade;
-    // Declara um atributo privado do tipo double para armazenar o preço unitário do produto.
+    // 5d: Campo para o preço de cada unidade.
     private double preco;
-    // Declara um atributo privado do tipo booleano para indicar se o produto está ativo (true) ou descontinuado (false).
+    // 14a: Adiciona um campo de instância booleano chamado 'ativo' com um valor padrão 'true'.
     private boolean ativo;
 
-    // Declaração do construtor padrão (sem argumentos).
+    // 6: Criação dos construtores.
+    // 6a: Construtor padrão (sem parâmetros) que inicializa os campos com valores padrão.
     public Produto() {
-        // Inicializa o atributo 'numeroItem' com o valor 0.
         this.numeroItem = 0;
-        // Inicializa o atributo 'nomeProduto' com uma string vazia.
         this.nomeProduto = "";
-        // Inicializa o atributo 'quantidade' com o valor 0.
         this.quantidade = 0;
-        // Inicializa o atributo 'preco' com o valor 0.0.
         this.preco = 0.0;
-        // Inicializa o atributo 'ativo' com o valor true (produto ativo por padrão).
+        // 14a: Garante que o valor padrão seja 'true' quando o construtor padrão é usado.
         this.ativo = true;
     }
 
-    // Declaração do construtor com parâmetros para inicializar os atributos do objeto.
+    // 6b: Construtor sobrecarregado com parâmetros para inicializar todos os campos.
     public Produto(int numeroItem, String nomeProduto, int quantidade, double preco) {
-        // Atribui o valor do parâmetro 'numeroItem' ao atributo 'numeroItem' da classe.
         this.numeroItem = numeroItem;
-        // Atribui o valor do parâmetro 'nomeProduto' ao atributo 'nomeProduto' da classe.
         this.nomeProduto = nomeProduto;
-        // Atribui o valor do parâmetro 'quantidade' ao atributo 'quantidade' da classe.
         this.quantidade = quantidade;
-        // Atribui o valor do parâmetro 'preco' ao atributo 'preco' da classe.
         this.preco = preco;
-        // Inicializa o atributo 'ativo' com o valor true para todo novo produto criado com este construtor.
+        // 14a: Garante que o valor padrão seja 'true' mesmo quando este construtor é usado.
         this.ativo = true;
     }
 
-    // --- Início dos Métodos Getters e Setters ---
-    // Getter: Método público que retorna o valor do atributo 'numeroItem'.
+    // 7: Criação dos métodos getter/accessor e setter/mutator para cada variável.
     public int getNumeroItem() {
         return numeroItem;
     }
 
-    // Setter: Método público que define um novo valor para o atributo 'numeroItem'.
     public void setNumeroItem(int numeroItem) {
         this.numeroItem = numeroItem;
     }
 
-    // Getter: Método público que retorna o valor do atributo 'nomeProduto'.
     public String getNomeProduto() {
         return nomeProduto;
     }
 
-    // Setter: Método público que define um novo valor para o atributo 'nomeProduto'.
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
     }
 
-    // Getter: Método público que retorna o valor do atributo 'quantidade'.
     public int getQuantidade() {
         return quantidade;
     }
 
-    // Setter: Método público que define um novo valor para o atributo 'quantidade'.
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
-    // Getter: Método público que retorna o valor do atributo 'preco'.
     public double getPreco() {
         return preco;
     }
 
-    // Setter: Método público que define um novo valor para o atributo 'preco'.
     public void setPreco(double preco) {
         this.preco = preco;
     }
 
-    // Getter para um atributo booleano. Por convenção, inicia-se com "is" em vez de "get".
+    // 14b: Criação dos métodos getter e setter para o novo campo 'ativo'.
     public boolean isAtivo() {
         return ativo;
     }
 
-    // Setter: Método público que define um novo valor para o atributo 'ativo'.
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    // --- Fim dos Métodos Getters e Setters ---
 
-    // Método público que calcula e retorna o valor total do estoque para este produto.
+    // 17: Cria um método para retornar o valor do inventário (preço * quantidade).
     public double getValorEstoque() {
-        // Multiplica a quantidade pelo preço e usa Math.ceil para arredondar o resultado para o próximo inteiro maior.
+        // Retorna o valor calculado em uma única linha de código, sem variáveis locais.
+        // O Math.ceil arredonda o valor para o próximo inteiro, uma prática comum para valores monetários.
         return Math.ceil(quantidade * preco);
     }
 
-    // Sobrescreve (substitui) o método 'toString' da classe Object.
+    // 8: Substitui (sobrescreve) o método toString() da classe Object.
     @Override
     public String toString() {
-        // Usa um operador ternário para definir a string 'status' como "Ativo" se 'ativo' for true, e "Descontinuado" caso contrário.
+        // 15: Adiciona uma lógica para exibir "Ativo" ou "Descontinuado" em vez de "true" ou "false".
         String status = ativo ? "Ativo" : "Descontinuado";
-        // Retorna uma String formatada com todas as informações do produto.
+
+        // 8, 14c e 18: Retorna a String formatada contendo todos os valores,
+        // incluindo o status (14c) e o valor do estoque (18).
         return "Número do Item\t\t  : " + numeroItem +
                 "\nNome\t\t\t\t  : " + nomeProduto +
                 "\nQuantidade em Estoque : " + quantidade +
-                "\nPreço\t\t\t\t  : R$ " + preco +
-                "\nValor do Estoque\t  : R$ " + getValorEstoque() +
+                "\nPreço\t\t\t\t  : R$ " + String.format("%.2f", preco) +
+                // 18: Inclui a chamada ao método getValorEstoque() na saída.
+                "\nValor do Estoque\t  : R$ " + String.format("%.2f", getValorEstoque()) +
+                // 14c e 15: Inclui o novo campo de status na saída.
                 "\nStatus do Produto\t  : " + status + "\n";
     }
 }
